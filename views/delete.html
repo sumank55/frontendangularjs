@@ -1,0 +1,1 @@
+<h2>delete page</h2>
