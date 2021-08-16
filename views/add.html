@@ -1,4 +1,5 @@
-<div ng-controller="crud-controller">
+
+<!-- <div ng-controller="add_ctrl">
     <table>
         <tr>
             <td>First_Name</td>
@@ -19,7 +20,113 @@
         </tr>
         <tr>
             <td><input type="button" ng-click="AddData()" value="save Data"></td>
-            <td><input type="button" ng-click="UpdateData()" value="Update Data"></td>
         </tr>
     </table>
+</div> -->
+
+
+<!-- <!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  
+<body ng-app="">
+
+
+<form name="myForm">
+<p>First_Name:
+<input name="myName" ng-model="myName" required>
+<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
+</p>
+
+<p>Last_Name:
+<input name="myAddress" ng-model="myAddress" required>
+<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
+</p>
+
+<p>Last_Name:
+<input name="myAddress" ng-model="myAddress" required>
+<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>  
+</p>
+<p>Title:
+<input name="myAddress" ng-model="myAddress" required>
+<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
+</p>
+
+</form>
+
+</body>
+</html> -->
+
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+       
+    </head>
+<body>
+    <div ng-controller="add_ctrl" >
+<form  method="post" 
+name="myForm" novalidate>
+
+<p>First_Name:<br>
+<input type="text" name="first_name" ng-model="first_name" required>
+<!-- <span style="color:red" ng-show="myForm.first_name.$dirty && myForm.first_name.$invalid">
+<span ng-show="myForm.first_name.$error.required">First_Name is required.</span>
+</span> -->
+</p>
+<p>Last_Name:<br>
+    <input type="text" name="last_name" ng-model="last_name" required>
+    <!-- <span style="color:red" ng-show="myForm.last_name.$dirty && myForm.last_name.$invalid">
+    <span ng-show="myForm.last_name.$error.required">Last_Name is required.</span>
+    </span>
+    </p> -->
+
+<p>Email:<br>
+<input type="email" name="email" ng-model="email" required>
+<!-- <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+<span ng-show="myForm.email.$error.required">Email is required.</span>
+<span ng-show="myForm.email.$error.email">Invalid email address.</span>
+</span> -->
+</p>
+<p>Title:<br>
+    <input type="text" name="title_name" ng-model="title_name" required>
+    <!-- <span style="color:red" ng-show="myForm.title_name.$dirty && myForm.title_name.$invalid">
+    <span ng-show="myForm.title_name.$error.required">title is required.</span>
+    <!-- <span ng-show="myForm.title.$error.title">Invalid title address.</span> -->
+    </span>
+    </p> -->
+
+<p>
+<input type="submit"ng_click="AddData()" value="Submit">
+<!-- ng-disabled="myForm.first_name.$dirty && myForm.first_name.$invalid ||  
+myForm.title.$dirty && myForm.email.$invalid"> -->
+</p>
+
+</form>
 </div>
+</body>
+</html>
+
+
+ <!-- <div ng-controller="add_ctrl">
+        <p>    Click <a ng-click="AddData()">here</a> to load data.</p>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Title</th>
+        </tr>
+        <tr ng-repeat="emp in employee">
+            <td>{{emp.id}}</td>
+            <td>{{emp.first_name}}</td>
+            <td>{{emp.lastName}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.title}}</td>
+        </tr>
+    </table>
+    </div>
+</div> -->
+
+

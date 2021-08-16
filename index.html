@@ -1,5 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="myMod">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employee</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="angularjs.js"></script>
+    <script src="module.js"></script>
+    <script src="route.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row"">
+            <div class="col-sm-12">
+                <h1 class="jumbotron bg-dark text-white text-center">Employee Details</h1>
+            </div>
+        </div>
+        <div class="row"  style="margin-top:-30px;">
+            <div class="col-sm-3">
+                <div class ="bg-dark" style="height:500px">
+                    <ul style="list-style:none; font-size:30px;">
+                        <li><a href="#!add">Add</a></li>
+                        <li><a href="#!list">List</a></li>
+                        <li><a href="#!delete">Delete</a></li>
+                        <li><a href="#!edit">Edit</a></li>
+                       
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+                <div  class="ng-view"  style="margin-top:50px;">
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card card-body bg-dark text-white text-center">All Rights  reserver to any company @copy</div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html ng-app="myapp">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,12 +63,53 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   
     <script src="module.js"></script>
-    <!-- <script src="route.js"></script> -->
+    <script src="route.js"></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
-<body >
+
+    <body ng-controller="mainController" >
+        <div class="container">
+            <div class="row"">
+                <div class="col-sm-12">
+                    <h1 class="jumbotron bg-dark text-white text-center">employee</h1>
+                </div>
+            </div>
+            <div class="row"  style="margin-top:-30px;">
+                <div class="col-sm-3">
+                    <div class ="bg-dark" style="height:500px">
+                        <ul style="list-style:none; font-size:30px;">
+                            <li><a href="#!add">Add</a></li>
+                            <li><a href="#!list">List</a></li>
+                            <li><a href="#!delete">Delete</a></li>
+                            <li><a href="#!edit">Edit</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                </div>
+    
+                </div>
+                </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate> 
     <div  ng-app="mainApp"ng-controller="crudController" >
         <table>
             <tr>
@@ -22,20 +118,20 @@
             </tr>
             <tr>
                 <td>First_Name</td>
-                <td><input type="text" ng-model="First_Name"></td>
+                <td><input type="text" ng-model="First_Name" required></td>
             </tr>
             <tr>
                 <td>Last_Name</td>
-                <td><input type="text" ng-model="Last_Name"></td>
+                <td><input type="text" ng-model="Last_Name" required ></td>
                 
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="email" ng-model="Email"></td>
+                <td><input type="email" name="email" ng-model="Email" required></td>
             </tr>
             <tr>
                 <td>Role</td>
-                <td><input type="text" ng-model="Role"></td>
+                <td><input type="text" ng-model="Role" required ></td>
             </tr>
             <tr>
                 <td><input type="button" ng-click="AddData()" value="save Data"></td>
@@ -46,7 +142,7 @@
         <table class="bg-dark text-white table-strip table-responsive table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ID</th>                             
                     <th>First_Name</th>
                     <th>Last_Name</th>
                     <th>Email</th>
@@ -54,12 +150,13 @@
                 </tr>
                 </thead>
                    
-                    <tr  ng-click="BindSelectedData(Emp)" ng-repeat="Emp in EmpList">
+                    <tr  ng-click="BindSelectedData(Emp)" ng-repeat="Emp in employee">
                         <td>{{Emp.Id}}</td>
-                        <td>{{Emp.First_Name}}</td>
-                        <td>{{Emp.Last_Name}}</td>
-                        <td>{{Emp.Email}}</td>
-                        <td>{{Emp.Role}}</td>
+                        <td>{{Emp.first_name}}</td>
+                        <td>{{Emp.last_name}}</td>
+                        <td>{{Emp.email}}</td>
+                        <td>{{Emp.title}}</td>
+                       
                        
                         <td>
                             <input type="button" value="Delete" ng-click="DeleteData(Emp)">
@@ -68,7 +165,7 @@
                     </tr>
         </table>
    
-        </div>
+        </div> -->
 
 
     
