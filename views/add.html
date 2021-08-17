@@ -1,61 +1,4 @@
 
-<!-- <div ng-controller="add_ctrl">
-    <table>
-        <tr>
-            <td>First_Name</td>
-            <td><input type="text" ng-model="FIrst_Name"></td>
-        </tr>
-        <tr>
-            <td>Last_Name</td>
-            <td><input type="text" ng-model="First_Name"></td>
-            
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><input type="email" ng-model="Email"></td>
-        </tr>
-        <tr>
-            <td>Role</td>
-            <td><input type="text" ng-model="role"></td>
-        </tr>
-        <tr>
-            <td><input type="button" ng-click="AddData()" value="save Data"></td>
-        </tr>
-    </table>
-</div> -->
-
-
-<!-- <!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  
-<body ng-app="">
-
-
-<form name="myForm">
-<p>First_Name:
-<input name="myName" ng-model="myName" required>
-<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
-</p>
-
-<p>Last_Name:
-<input name="myAddress" ng-model="myAddress" required>
-<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
-</p>
-
-<p>Last_Name:
-<input name="myAddress" ng-model="myAddress" required>
-<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>  
-</p>
-<p>Title:
-<input name="myAddress" ng-model="myAddress" required>
-<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
-</p>
-
-</form>
-
-</body>
-</html> -->
-
 
 <html>
     <head>
@@ -65,8 +8,7 @@
     </head>
 <body>
     <div ng-controller="add_ctrl" >
-<form  method="post" 
-name="myForm" novalidate>
+<form  method="post" name="myForm" novalidate>
 
 <p>First_Name:<br>
 <input type="text" name="first_name" ng-model="first_name" required>
@@ -89,7 +31,7 @@ name="myForm" novalidate>
 </span> -->
 </p>
 <p>Title:<br>
-    <input type="text" name="title_name" ng-model="title_name" required>
+    <input type="text" name="title" ng-model="title" required>
     <!-- <span style="color:red" ng-show="myForm.title_name.$dirty && myForm.title_name.$invalid">
     <span ng-show="myForm.title_name.$error.required">title is required.</span>
     <!-- <span ng-show="myForm.title.$error.title">Invalid title address.</span> -->
@@ -97,7 +39,7 @@ name="myForm" novalidate>
     </p> -->
 
 <p>
-<input type="submit"ng_click="AddData()" value="Submit">
+<input type="submit" ng_click="AddData(first_name, last_name, email, title)" value="Submit">
 <!-- ng-disabled="myForm.first_name.$dirty && myForm.first_name.$invalid ||  
 myForm.title.$dirty && myForm.email.$invalid"> -->
 </p>
@@ -106,7 +48,6 @@ myForm.title.$dirty && myForm.email.$invalid"> -->
 </div>
 </body>
 </html>
-
 
  <!-- <div ng-controller="add_ctrl">
         <p>    Click <a ng-click="AddData()">here</a> to load data.</p>

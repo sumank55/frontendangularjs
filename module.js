@@ -1,106 +1,143 @@
+var app = angular.module("myMod", ["ngRoute"]);
 
+app.config([
+  "$routeProvider",
+  function ($routeProvider) {
+    $routeProvider
+      .when("/add", {
+        templateUrl: "views/add.html",
+        controller: "add_ctrl",
+      })
+      .when("/list", {
+        templateUrl: "views/list.html",
+        controller: "list_ctrl",
+      })
+      .when("/edit", {
+        templateUrl: "views/edit.html",
+        controller: "list_ctrl",
+      })
+      .otherwise({
+        redirectTo: "index.html",
+      });
+  },
+]);
 
-var app = angular.module("myMod", ['ngRoute']);
+app.controller("list_ctrl", function ($scope, $http) {
+  $scope.employee = [];
 
-app.config(["$routeProvider", function ($routeProvider) {
+  $http({
+    method: "GET",
+    url: "http://127.0.0.1:8000/employee/",
+  }).then(
+    function (response) {
+      $scope.employee = response.data;
+    },
+    function (error) {
+      console.log(error, "can not get");
+    }
+  );
 
-    $routeProvider.
-        when("/add", {
-            templateUrl: 'views/add.html',
-            controller:'add_ctrl'
-        }).
-        when("/list", {
-            templateUrl: 'views/list.html',
-            controller:'list_ctrl'
-        }).
-        when("/delete", {
-            templateUrl: 'views/delete.html',
-            controller:'delete_ctrl'
-        }).
-        when("/edit", {
-            templateUrl: 'views/edit.html',
-            controller: 'edit_ctrl'
-            
-        }).otherwise({
-            redirectTo:'index.html'
-        })
-}])
-    
-    
-app.controller("list_ctrl", function ($scope,$http) {
-    $scope.employee = [];
-                
+  $scope.DeleteData = function (id) {
+    console.log("Id", id);
     $http({
-        method: 'GET',
-        url: 'http://127.0.0.1:8000/employee/'
-    }).then(function (response) {
-        $scope.employee = response.data;
-    }, function (error) {
-        console.log(error,"can not get");
-
-    });
-})
-
- 
-   
-
-
-var option = "json=" + encodeURI(JSON.stringify([
-    {
-        id: "",
-        first_name: "",
-        last_name: "",
-        email: "",
-        title_name: ""
-    
-    
-}
-
-]));    
-app.controller("add_ctrl", function ($scope, $http) {
-
-    $scope.employee = [];
-    $scope.AddData = function () {
-        $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8000/employee/',
-            data: option
-        }).then(function (data, status) {
-           
-            $scope.employee = data;
-            console.log("data",employee);
-            console.log("data added")
-        }, function (error) {
-
-            console.log(error, " You can not add");
-            
-        });
-    };
-        
+      method: "DELETE",
+      url: "http://127.0.0.1:8000/employee/" + id,
+      data: {id: id},
+    }).then(
+      function (data, status) {
+        location.reload();
+        console.log("data deleted");
+      },
+      function (error) {
+        console.log(error, " You can not delete");
+      }
+    );
+  };
+  // $scope.EditData = function (id) {
+  //     console.log("Id",id)
+  //     $http({
+  //         method: 'PUT',
+  //         url: 'http://127.0.0.1:8000/employee/'+ id,
+  //         data: ({id : id})
+  //     }).then(function (response) {
+  //         // $scope.employee = response.data;
+  //         // console.log("hgdsgadhghk",$scope.employee)
+  //         console.log("data Edited")
+  //     }, function (error) {
+  //         console.log(error, " You can not update");
+  //     });
+  // };
 });
-  
-    app.controller("delete_ctrl", function ($scope) {
+
+app.controller("add_ctrl", function ($scope, $http) {
+  // $scope.employee = [];
+  $scope.AddData = function (first_name, last_name, email, title) {
+    $http({
+      method: "POST",
+      url: "http://127.0.0.1:8000/employee/",
+      data: {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        title: title.name,
+      },
+    }).then(
+      function (data, status) {
+        console.log("data", data);
+        console.log("data added");
+      },
+      function (error) {
+        console.log(error, " You can not add");
+      }
+    );
+  };
+});
+
+app.controller("edit_ctrl", function ($scope, $http) {
+  $scope.UpdateData = function (id) {
+      console.log("Id",id)
+      $http({
+          method: 'PUT',
+          url: `http://127.0.0.1:8000/employee` + id,
+          data: {
+              id: id
+          }
       
-        
-        
-    });
-    
-    app.controller("edit_ctrl", function ($scope) {
-        
-        
-    });
+      }).then(function (data, status) {
+          location.reload();
+          console.log("data deleted")
+      }, function (error) {
+          console.log(error, " You can not update");
+      });
+  };
+ 
+ 
+});
 
+// app.controller("delete_ctrl", function ($scope) {
+//     $scope.DeleteData = function (id) {
+//         $http({
+//             method: 'DELETE',
+//             url: 'http://127.0.0.1:8000/employee/id/',
+//             data:id
+//         }).then(function (data, status) {
 
+//             console.log("data",data);
+//             console.log("data deleted")
+//         }, function (error) {
+//             console.log(error, " You can not delete");
+//         });
+//     };
 
+//     });
 
+//     app.controller("edit_ctrl", function ($scope) {
 
-
+//     });
 
 // var app = angular.module("myapp", ['ngRoute']);
 
-
 // app.config(["$routeProvider", function ($routeProvider) {
-
 
 //     $routeProvider.
 //         when("/add", {
@@ -118,18 +155,16 @@ app.controller("add_ctrl", function ($scope, $http) {
 //         when("/edit", {
 //             templateUrl: 'views/edit.html',
 //             controller: 'edit_ctrl'
-            
+
 //         }).otherwise({
 //             redirectTo:'index.html'
 //         })
 // }])
 
-
-
 // app.controller("add_ctrl", function ($scope) {
 //         $scope.EmpList = [];
 //         $scope.AddData = function () {
-                
+
 //                 $http({
 //                         method : 'POST',
 //                         url :  'http://127.0.0.1:8000/employee/',
@@ -138,20 +173,15 @@ app.controller("add_ctrl", function ($scope, $http) {
 //                         console.log("Success", status);
 //                 }).error(function(data, status, headers, config) {
 //                         console.log("Error " + data);
-                       
-//                 }); 
-        
-        
-             
 
-    
+//                 });
+
 //         }
-    
+
 // });
 
-
 // app.controller("list_ctrl", function ($scope) {
-        
+
 //         $scope.employee = [];
 //                 $http({
 //                         method: 'GET', url: 'http://127.0.0.1:8000/employee/',
@@ -163,34 +193,21 @@ app.controller("add_ctrl", function ($scope, $http) {
 //                         error(function(data, status) {
 //                         alert("Error");
 //                 });
-    
+
 // });
 
-
-
 // app.controller("delete_ctrl", function ($scope) {
-    
-    
-    
+
 // });
 
 // app.controller("edit_ctrl", function ($scope) {
-        
+
 // });
 // app.controller("maincontroller", function ($scope) {
-        
+
 // });
 
-
-
-
-
-
-
-
- 
 // var app = angular.module("mainApp", [])
- 
 
 // app.controller("crudController", function ($scope, $http) {
 // //     var myTestApp = angular.module("myTestModule", [])
@@ -199,50 +216,37 @@ app.controller("add_ctrl", function ($scope, $http) {
 //         // fetch(url, {mode: "no-cors"})
 //         headers : {
 
-            
 //             "Content-type" : "application/json"
 //             "Access-Control-Allow-Origin": "*"
-            
+
 //             }
-        
 
 //         $http.post(url).then( function(response) {
 //            $scope.employees = response.data;
 //         });
-    
+
 // });
 
-
-
-
-
-
-
-
-
-
 // var app = angular.module("mainApp", [])
- 
+
 //     app.controller("crudController", function ($scope, $http) {
 //         //     var myTestApp = angular.module("myTestModule", [])
 //         // myTestApp.controller("customerController", function ($scope, $http) {
 //                 var url = "http://localhost:8000/employee/";
-                
+
 //                 // headers : {
-        
-                    
+
 //                 //     "Content-type" : "application/json"
 //                 //     "Access-Control-Allow-Origin": "*"
-                    
+
 //                 //     }
-                
-        
+
 //                 $http.post(url).then( function(response) {
 //                    $scope.employees = response.data;
 //                 });
-            
+
 //     });
-        
+
 //     $scope.EmpList = [];
 //     $scope.AddData = function () {
 //         var emp = {
@@ -252,25 +256,22 @@ app.controller("add_ctrl", function ($scope, $http) {
 //             Email: $scope.Email,
 //             Role: $scope.Role
 
-
 //         };
 
 //         $scope.EmpList.push(emp);
 //         ClearModel();
-//     };  
+//     };
 
-//     //Delete the data 
+//     //Delete the data
 
 //     $scope.DeleteData = function (emp) {
 //         var index = $scope.EmpList.indexOf(emp);
 //         $scope.EmpList.splice(index, 1);
 //     };
 
-
 //     //function to bind data to the input fields
 
 //     $scope.BindSelectedData = function (emp) {
-
 
 //         $scope.Id = emp.Id;
 //         $scope.First_Name = emp.First_Name;
@@ -278,7 +279,6 @@ app.controller("add_ctrl", function ($scope, $http) {
 //         $scope.Email = emp.Email;
 //         $scope.Role= emp.Role;
 //     }
-
 
 //     //Update data for
 //     $scope.UpdateData    = function () {
@@ -294,7 +294,6 @@ app.controller("add_ctrl", function ($scope, $http) {
 //         });
 //     }
 
-
 //     function ClearModel() {
 //         $scope.Id = 0;
 //         $scope.First_Name = '';
@@ -303,5 +302,4 @@ app.controller("add_ctrl", function ($scope, $http) {
 
 //     }
 
-     
 // });

@@ -20,7 +20,7 @@ font-size: 3em;">Employee Page</h2>
      <h2 style="color: red;
 font-size: 3em;">Employee Page</h2>
 <div ng-controller="list_ctrl" >
-    <table border="1px" class="table table-hover bg-dark text-white table-strip table-responsive table-bordered">
+    <table border="1px" class="table bg-dark text-white table-strip table-responsive table-bordered">
         <thead>
             <tr><th>ID</th>
                 <th>Title</th>
@@ -35,16 +35,17 @@ font-size: 3em;">Employee Page</h2>
                 <tr ng-repeat="emp in employee">
                     {{console.log("list",emp)}}
                     <td>{{emp.id}}</td>
-                    <td>{{emp.title_name}}</td>
+                    <td>{{emp.title}}</td>
                     <td>{{emp.first_name}}</td>
                     <td>{{emp.last_name}}</td>
                     <td>{{emp.email}}</td>
                     
                     
                     <td>
-                        <button class="">Edit</button>
-                        <button class="">Delete</button>
-                        <button class="">add</button>
+                        <a href="#!edit"><input type="submit" ng_click="EditData(emp.id)" value="Edit"></a>
+                        <!-- <button class="submit" ng_click="DeleteData(id)">delete</button> -->
+                        <input type="submit" ng_click="DeleteData(emp.id)" value="Delete">
+                        
                     </td>
                 </tr>
                
