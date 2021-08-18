@@ -1,77 +1,75 @@
+<h2>Edit and update Your Details</h2>
+<div ng-controller="edit_ctrl">
+    <form method="post" name="myForm" novalidate>
 
+        <p>First_Name:<br>
+            <input type="text" name="first_name" ng-model={{employee.first_name}}
+                required>
 
-<html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
-       
-    </head>
-<body>
-    <div ng-controller="edit_ctrl" >
-<form  method="post" name="myForm" novalidate>
-
-<p>First_Name:<br>
-<input type="text" name="first_name" ng-model="first_name" value="" required>
-<!-- <span style="color:red" ng-show="myForm.first_name.$dirty && myForm.first_name.$invalid">
+            <!-- <span style="color:red" ng-show="myForm.first_name.$dirty && myForm.first_name.$invalid">
 <span ng-show="myForm.first_name.$error.required">First_Name is required.</span>
 </span> -->
-</p>
-<p>Last_Name:<br>
-    <input type="text" name="last_name" ng-model="last_name" required>
-    <!-- <span style="color:red" ng-show="myForm.last_name.$dirty && myForm.last_name.$invalid">
+        </p>
+        <p>Last_Name:<br>
+            <input type="text" name="last_name" ng-model="last_name" placeholder="{{employee.last_name}}"required>
+            <!-- <span style="color:red" ng-show="myForm.last_name.$dirty && myForm.last_name.$invalid">
     <span ng-show="myForm.last_name.$error.required">Last_Name is required.</span>
-    </span>
-    </p> -->
+    </span>-->
+        </p>
 
-<p>Email:<br>
-<input type="email" name="email" ng-model="email" required>
-<!-- <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+        <p>Email:<br>
+            <input type="email" name="email" ng-model="email" required>
+            <!-- <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
 <span ng-show="myForm.email.$error.required">Email is required.</span>
 <span ng-show="myForm.email.$error.email">Invalid email address.</span>
 </span> -->
-</p>
-<p>Title:<br>
-    <input type="text" name="title" ng-model="title" required>
-    <!-- <span style="color:red" ng-show="myForm.title_name.$dirty && myForm.title_name.$invalid">
+        </p>
+        <p>Title:<br>
+            <input type="text" name="title" ng-model="title" required>
+            <!-- <span style="color:red" ng-show="myForm.title_name.$dirty && myForm.title_name.$invalid">
     <span ng-show="myForm.title_name.$error.required">title is required.</span>
     <!-- <span ng-show="myForm.title.$error.title">Invalid title address.</span> -->
-    </span>
-    </p> -->
+            </span>
+        </p> -->
 
-<p>
-<input type="submit" ng_click="UpdateData(first_name, last_name, email, title)" value="Update">
-<Script>
-    console.log(UpdateData)
-</Script>
-<!-- ng-disabled="myForm.first_name.$dirty && myForm.first_name.$invalid ||  
+        <p>
+            <input type="hidden" ng-model="id" />
+            <input type="submit" ng_click="UpdateData(first_name, last_name, email, title)" value="Update">
+
+
+
+            <!-- ng-disabled="myForm.first_name.$dirty && myForm.first_name.$invalid ||  
 myForm.title.$dirty && myForm.email.$invalid"> -->
-</p>
+        </p>
 
-</form>
+    </form>
 </div>
-</body>
-</html>
+<!-- <br>
+<br>
+<table border="1px" class="table  table-bordered">
+
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>First_Name</th>
+        <th>Last_Name</th>
+        <th>Email</th>
+        <th>update</th>
+
+    </tr>
 
 
- <!-- <div ng-controller="add_ctrl">
-        <p>    Click <a ng-click="AddData()">here</a> to load data.</p>
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Title</th>
-        </tr>
-        <tr ng-repeat="emp in employee">
-            <td>{{emp.id}}</td>
-            <td>{{emp.first_name}}</td>
-            <td>{{emp.lastName}}</td>
-            <td>{{emp.email}}</td>
-            <td>{{emp.title}}</td>
-        </tr>
-    </table>
-    </div>
-</div> -->
+    {{console.log("list",employee)}}
+    <tr ng-repeat="emp in employee">
+        {{console.log("list",emp)}}
+        <td>{{emp.id}}</td>
+        <td>{{emp.title}}</td>
+        <td>{{emp.first_name}}</td>
+        <td>{{emp.last_name}}</td>
+        <td>{{emp.email}}</td>
 
-
+        <td>
+        <td>
+            <input type="submit" ng_click="UpdateData(emp.first_name, emp.last_name, emp.email, emp.title)"
+                value="Update">
+        </td> -->

@@ -14,7 +14,7 @@ app.config([
       })
       .when("/edit", {
         templateUrl: "views/edit.html",
-        controller: "list_ctrl",
+        controller: "edit_ctrl",
       })
       .otherwise({
         redirectTo: "index.html",
@@ -53,20 +53,22 @@ app.controller("list_ctrl", function ($scope, $http) {
       }
     );
   };
-  // $scope.EditData = function (id) {
-  //     console.log("Id",id)
-  //     $http({
-  //         method: 'PUT',
-  //         url: 'http://127.0.0.1:8000/employee/'+ id,
-  //         data: ({id : id})
-  //     }).then(function (response) {
-  //         // $scope.employee = response.data;
-  //         // console.log("hgdsgadhghk",$scope.employee)
-  //         console.log("data Edited")
-  //     }, function (error) {
-  //         console.log(error, " You can not update");
-  //     });
-  // };
+  
+  $scope.EditData = function (id) {
+      console.log("Id",id)
+      $http({
+          method: 'GET',
+          url: 'http://127.0.0.1:8000/employee/'+ id,
+          data: {id : id}
+      }).then(function (response) {
+          $scope.employee = response.data;
+        console.log("hgdsgadhghk", $scope.employee)
+        console.log("lastname", $scope.employee.last_name)
+        console.log("firstname", $scope.employee.first_name)
+      }, function (error) {
+          console.log(error, " You can not update");
+      });
+  };
 });
 
 app.controller("add_ctrl", function ($scope, $http) {
@@ -94,25 +96,63 @@ app.controller("add_ctrl", function ($scope, $http) {
 });
 
 app.controller("edit_ctrl", function ($scope, $http) {
-  $scope.UpdateData = function (id) {
-      console.log("Id",id)
-      $http({
-          method: 'PUT',
-          url: `http://127.0.0.1:8000/employee` + id,
-          data: {
-              id: id
-          }
-      
-      }).then(function (data, status) {
-          location.reload();
-          console.log("data deleted")
-      }, function (error) {
-          console.log(error, " You can not update");
-      });
+
+  // $scope.EditData = function (id) {
+  //   $scope.emp = {};
+  //   // $scope.last_name = '';
+  //   // console.log('jas $scope.last_name: ', $scope.last_name);
+  //   $http({
+  //     method: "GET",
+  //     url: `http://127.0.0.1:8000/employee/id/` + id,
+  //     data: {
+  //       id: id,
+  //       // first_name: first_name,
+  //       // last_name: last_name,
+  //       // email: email,
+  //       // title: title.name,
+  //     },
+  //   }).then(
+  //     function (response) {
+  //       console.log("Received", response);
+  //       $scope.emp = response.data;
+  //       console.log("Id",emp.id)
+        
+  //       // $scope.last_name = $scope.emp.last_name;
+  //       // console.log('jas $scope.last_name: ', $scope.last_name);
+  //     },
+  //     function (error) {
+  //       console.log(error, " You can not update");
+  //     }
+  //   );
+  // };
+ 
+  $scope.UpdateData = function (id, first_name, last_name, email, title) {
+    $scope.id = id;
+    $scope.first_name = first_name;
+    $scope.last_name = last_name;
+    $scope.email = email;
+    $scope.title = title;
+
+
+    console.log("Id", id);
+    console.log("ln",last_name)
+    $http({
+      method: "PUT",
+      url: `http://127.0.0.1:8000/employee/` + id,
+      data: {
+        id: id,
+      },
+    }).then(
+      function (data, status) {
+        console.log("data updated");
+      },
+      function (error) {
+        console.log(error, " You can not update");
+      }
+    );
   };
- 
- 
 });
+
 
 // app.controller("delete_ctrl", function ($scope) {
 //     $scope.DeleteData = function (id) {
